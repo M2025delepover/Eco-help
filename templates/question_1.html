@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title> Eco-Trivia</title>
+</head>
+<body>
+<!-- Respuestas posibles -->
+    <h2> Respuesta 1</h2>
+    <h3 id="C" style="display: none;"> Correcto</h3>
+    <h3 id="B" style="display: none;"> Incorrecto</h3>
+    <button onclick="C_Ans()">1</button>
+    <button onclick="B_Ans()">2</button>
+    <button onclick="B_Ans()">3</button>
+    <p id="explicacion" style="display: none;">juajuasjuas</p>
+    <button id="sig" disabled>siguiente</button>
+
+</body>
+<script>
+    //Funciones que muestran la respuesta correcta y su expluicación, ademas del botón de siguiente
+    let Ans = false;
+    function C_Ans()
+    {
+        if (!Ans){
+            Ans = true;
+            document.getElementById("sig").disabled = false;
+            document.getElementById("explicacion").style.display = "block";
+            document.getElementById("C").style.display = "block";
+            }
+
+    }
+    function B_Ans()
+    {
+        if (!Ans)
+        {
+        Ans=true
+        document.getElementById("sig").diabled = false;
+        document.getElementById("explicacion").style.display = "block";
+        document.getElementById("B").style.display = "block";
+        }
+    }
+</script>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+<head>
+    <title> Eco-Trivia</title>
+</head>
+<body>
+    <h1>Bienvenido a eco trivia</h1>
+    <h2>¿Empezar?</h2>
+    <button onclick="sonido.play(); setTimeout(() => window.location.href='/question_1', 300);">Empezar</button>
+    <script>
+        const sonido = new Howl({
+            src: ["audio.mp3"]
+        })
+    </script>
+</body>
