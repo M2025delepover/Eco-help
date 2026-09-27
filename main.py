@@ -8,4 +8,8 @@ def index():
 @app.route("/question_1")
 def question_1():
     return render_template("question_1.html")
+
+@app.route("/question_1/final")
+def final():
+    return render_template("final.html")
 app.run(debug=True)
