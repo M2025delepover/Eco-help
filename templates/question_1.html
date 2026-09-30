@@ -2,40 +2,64 @@
 <html lang="en">
 <head>
     <title> Eco-Trivia</title>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
+    <div class="barra-superior"></div>
 <!-- Respuestas posibles -->
-    <h2> Respuesta 1</h2>
-    <h3 id="C" style="display: none;"> Correcto</h3>
-    <h3 id="B" style="display: none;"> Incorrecto</h3>
-    <button onclick="C_Ans()">1</button>
-    <button onclick="B_Ans()">2</button>
-    <button onclick="B_Ans()">3</button>
-    <p id="explicacion" style="display: none;">juajuasjuas</p>
-    <button id="sig" disabled>siguiente</button>
-
+    <h2>Si una botella de plástico puede reciclarse, ¿qué significa principalmente el símbolo de reciclaje?</h2>
+    <h3 id="C" class="C" style="display: none;"> Correcto</h3>
+    <h3 id="B" class="B" style="display: none;"> Incorrecto</h3>
+    <button onclick="C_Ans()">Que el material puede entrar en algún proceso de reciclaje</button>
+    <button onclick="B_Ans()">Que fue fabricada con plástico reciclado</button>
+    <button onclick="B_Ans()">Que necesariamente será reciclada</button>
+    <p id="explicacion" style="display: none;">Que algo sea reciclable no significa que necesariamente vaya a reciclarse. 
+Para que ocurra, tienen que existir sistemas de recolección, separación, transporte y procesamiento adecuados.
+Además, algunos materiales pueden ser técnicamente reciclables pero no resultar económicamente viables de procesar en determinada región.</p>
+    <button id="sig" class="sig" disabled onclick="setTimeout(() => window.location.href='/question_2', 300)">siguiente</button>
+    <p></p>
+    <div class="barra-inferior"></div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
 <script>
-    //Funciones que muestran la respuesta correcta y su expluicación, ademas del botón de siguiente
+    let Pts = Number(sessionStorage.getItem("Pts")) || 0;
     let Ans = false;
+    //Funciones que muestran la respuesta correcta y su expluicación, ademas del botón de siguiente
     function C_Ans()
     {
         if (!Ans){
             Ans = true;
+            const G_A = new Howl
+            ({
+        
+                src: ["/static/G_Anwser.wav"]
+            })
+            G_A.play()
             document.getElementById("sig").disabled = false;
             document.getElementById("explicacion").style.display = "block";
             document.getElementById("C").style.display = "block";
-            }
+            Pts = Pts +1;
+        sessionStorage.setItem("Pts", Pts)   
+        console.log(Pts);
+        }
 
     }
     function B_Ans()
     {
         if (!Ans)
         {
-        Ans=true
-        document.getElementById("sig").diabled = false;
-        document.getElementById("explicacion").style.display = "block";
-        document.getElementById("B").style.display = "block";
+            const W_A = new Howl
+            ({
+        
+                src: ["/static/W_Anwser.wav"]
+            })
+            W_A.play()
+            Ans=true
+            document.getElementById("sig").disabled = false;
+            document.getElementById("explicacion").style.display = "block";
+            document.getElementById("B").style.display = "block";
+            sessionStorage.setItem("Pts", Pts)   
+            console.log(Pts);
         }
     }
 </script>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Eco-Trivia</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+<body>
+    <div class="barra-superior"></div>
+    <h1 class = "titl">¡Terminaste!</h1>
+    <h2>¿Que tan ecológico eres?</h2>
+    <h2 id= "Obtuviste" style="display: none;">Obtuviste</h2>
+    <h2 id = "F_pts" style="display: none;">0</h2>
+    <h2 id= "de7" style="display: none;">de 7 asiertos</h2>
+    <h3 id= "Mejor"style="display: none;">Mejor puntaje:</h3>
+    <h3 id = "M_pts" style="display: none;">0</h3>
+    <button id = "Mo"  onclick="Most()">Mostrar</button>
+    <button id = "Sig" disabled onclick="setTimeout(() => window.location.href='/', 300)">Regresar</button>
+    <div class="barra-inferior"></div>
+</body>
+<script>
+    let M_Pts = Number(localStorage.getItem("M_Pts")) || 0;
+    let Pts = Number(sessionStorage.getItem("Pts")) || 0;
+    let Ans = false;
+    
+
+    if (Pts > M_Pts)
+    {
+        M_Pts = Pts;
+        localStorage.setItem("M_Pts", Pts)
+    }
+    document.getElementById("F_pts").textContent = "" + Pts;
+    document.getElementById("M_pts").textContent = "" + M_Pts;
+    function Most ()
+    {
+        document.getElementById("Mo").disabled = true;
+        document.getElementById("Sig").disabled = false;
+        document.getElementById("Obtuviste").style.display = "block";
+        document.getElementById("F_pts").style.display = "block";
+        document.getElementById("de7").style.display = "block";
+        document.getElementById("Mejor").style.display = "block";
+        document.getElementById("M_pts").style.display = "block";
+    if (Pts <= 3)
+    {
+        const Loss = new Howl
+        ({
+            src: ["/static/Fail.wav"]
+        })
+        Loss.play()
+    }
+   if (Pts >= 4) {
+        const Win_ = new Howl
+        ({
+            src: ["/static/Win.wav"]
+        })
+        Win_.play()
+    }
+
+    }
+
+
+</script>

@@ -2,11 +2,62 @@
 <html lang="en">
 <head>
     <title> Eco-Trivia</title>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
-    <h2> Respuesta 1</h2>
-    <button>1</button>
-    <button>2</button>
-    <button>3</button>
-
+    <div class="barra-superior"></div>
+<!-- Respuestas posibles -->
+    <h2>¿Cual de estas acciones que realizan las redes sociales es mas peligrosa para el planeta?</h2>
+    <h3 id="C" class="C" style="display: none;"> Correcto</h3>
+    <h3 id="B" class="B" style="display: none;"> Incorrecto</h3>
+    <button onclick="B_Ans()">Conocer nuevas personas</button>
+    <button onclick="B_Ans()">Permitir a emprendedores, artistas etc. promover sus negocios</button>
+    <button onclick="C_Ans()">Crear modas alrededor de productos</button>
+    <p id="explicacion" style="display: none;">El denominado sobreconsumismo crea la creencia de nescesidad de tener el objeto de moda, haciendo que la gente compre cosas inescesarias que terminan gastando recursos o en los basureros.</p>
+    <button id="sig" class="sig" disabled onclick="setTimeout(() => window.location.href='/question_7', 300)">siguiente</button>
+    <p></p>
+    <div class="barra-inferior"></div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+<script>
+    let Pts = Number(sessionStorage.getItem("Pts")) || 0;
+    let Ans = false;
+    //Funciones que muestran la respuesta correcta y su expluicación, ademas del botón de siguiente
+    function C_Ans()
+    {
+        if (!Ans){
+            Ans = true;
+            const G_A = new Howl
+            ({
+        
+                src: ["/static/G_Anwser.wav"]
+            })
+            G_A.play()
+            document.getElementById("sig").disabled = false;
+            document.getElementById("explicacion").style.display = "block";
+            document.getElementById("C").style.display = "block";
+            Pts = Pts +1;
+        sessionStorage.setItem("Pts", Pts)   
+        console.log(Pts);
+        }
+
+    }
+    function B_Ans()
+    {
+        if (!Ans)
+        {
+            const W_A = new Howl
+            ({
+        
+                src: ["/static/W_Anwser.wav"]
+            })
+            W_A.play()
+            Ans=true
+            document.getElementById("sig").disabled = false;
+            document.getElementById("explicacion").style.display = "block";
+            document.getElementById("B").style.display = "block";
+            sessionStorage.setItem("Pts", Pts)   
+            console.log(Pts);
+        }
+    }
+</script>

@@ -3,14 +3,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
 <head>
     <title> Eco-Trivia</title>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
-    <h1>Bienvenido a eco trivia</h1>
+    <div class="barra-superior"></div>
+    <h1 class = "titl">Bienvenido a eco trivia</h1>
     <h2>¿Empezar?</h2>
-    <button onclick="sonido.play(); setTimeout(() => window.location.href='/question_1', 300);">Empezar</button>
+    <button onclick="sonido.play(); setTimeout(() => window.location.href='/question_1', 2000);">Empezar</button>
+      
     <script>
+        
         const sonido = new Howl({
-            src: ["audio.mp3"]
+            src: ["/static/G_Anwser.wav"]
         })
     </script>
+    <div class="barra-inferior"></div>
 </body>
+<script>
+    let M_Pts = Number(localStorage.getItem("M_Pts")) || 0;
+    Pts = sessionStorage.getItem("Pts");
+    sessionStorage.setItem("Pts", '0')
+    if ("Pts" == null)
+    {sessionStorage.setItem("Pts" == "0")}
+</script>

@@ -2,11 +2,63 @@
 <html lang="en">
 <head>
     <title> Eco-Trivia</title>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
-    <h2> Respuesta 2</h2>
-    <button>1</button>
-    <button>2</button>
-    <button>3</button>
-
+    <div class="barra-superior"></div>
+<!-- Respuestas posibles -->
+    <h2>¿Cual de estas acciones no es ecológica?</h2>
+    <h3 id="C" class="C" style="display: none;"> Correcto</h3>
+    <h3 id="B" class="B" style="display: none;"> Incorrecto</h3>
+    <button onclick="B_Ans()">Usar bicicleta en vez de automoviles siempre que se pueda</button>
+    <button onclick="B_Ans()">Apagar los dispositivos celectricos cuando no se usen</button>
+    <button onclick="C_Ans()">Comprar ropa hecha a base de botellas</button>
+    <p id="explicacion" style="display: none;">La industria de ropa compra grandes cantidades de botellas de plastico, encareciendo el reciclaje para las embotelladoras. 
+        Esto provoca que las embotelladoras opten por hacer nuevas botellas, además la tela echa a base de botellas no se puede convertir de nuevo en botellas facilmente.</p>
+    <button id="sig" class="sig" disabled onclick="setTimeout(() => window.location.href='/question_6', 300)">siguiente</button>
+    <p></p>
+    <div class="barra-inferior"></div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+<script>
+    let Pts = Number(sessionStorage.getItem("Pts")) || 0;
+    let Ans = false;
+    //Funciones que muestran la respuesta correcta y su expluicación, ademas del botón de siguiente
+    function C_Ans()
+    {
+        if (!Ans){
+            Ans = true;
+            const G_A = new Howl
+            ({
+        
+                src: ["/static/G_Anwser.wav"]
+            })
+            G_A.play()
+            document.getElementById("sig").disabled = false;
+            document.getElementById("explicacion").style.display = "block";
+            document.getElementById("C").style.display = "block";
+            Pts = Pts +1;
+        sessionStorage.setItem("Pts", Pts)   
+        console.log(Pts);
+        }
+
+    }
+    function B_Ans()
+    {
+        if (!Ans)
+        {
+            const W_A = new Howl
+            ({
+        
+                src: ["/static/W_Anwser.wav"]
+            })
+            W_A.play()
+            Ans=true
+            document.getElementById("sig").disabled = false;
+            document.getElementById("explicacion").style.display = "block";
+            document.getElementById("B").style.display = "block";
+            sessionStorage.setItem("Pts", Pts)   
+            console.log(Pts);
+        }
+    }
+</script>
